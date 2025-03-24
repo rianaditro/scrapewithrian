@@ -1,8 +1,18 @@
 from fastapi import APIRouter
-from fastapi.responses import HTMLResponse
 
 router = APIRouter()
 
-@router.get("/", response_class=HTMLResponse)
-def read_home():
-    return "<h1>Welcome to scrapewithrian Homepage</h1>"
+@router.get("/")
+async def read_home():
+    return {
+        "page_title": "Home",
+        "page_description": "Collection of all entry points",
+        "page_content": {
+            "entry_points": [
+                {
+                    "name": "Simple Table",
+                    "path": "/table"
+                },
+            ]
+        }
+    }
