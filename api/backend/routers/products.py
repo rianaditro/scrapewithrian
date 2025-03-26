@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Request, Depends, Query
 from fastapi.responses import JSONResponse
-from sqlmodel import select
-from sqlmodel.ext.asyncio.session import AsyncSession
+from sqlmodel import select, Session
 
 from api.models.products import Product
 from api.db.deps import get_db
@@ -13,7 +12,7 @@ router = APIRouter()
 async def get_products(
     request: Request,
     page: int = Query(1, ge=1, description="Page number (min: 1)"),
-    session: AsyncSession = Depends(get_db)
+    session: Session = Depends(get_db)
 ):
     """Fetch paginated products with total count from state."""
     
@@ -36,7 +35,7 @@ async def get_products(
     return {
         "page": page,
         "page_size": page_size,
-        "total_products": total_products,  # Fix: Use global total, not local len(products)
+        "total_products": total_products,
         "total_pages": total_pages,
         "has_next": page < total_pages,
         "has_prev": page > 1,

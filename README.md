@@ -45,3 +45,8 @@ create the sqlmodel object to representing your table object in api/models/produ
 create connection with db file and yield session (so it closed after use)
 create a temporary session for each request to interact with database (read), the session is temporary as long as the requests being processed and destroyed after it return the necassary value in deps.py
 
+## pagination
+add new routers for product pagination
+query database based on offset and limit
+check the total count of database by reading from app state instead of send new query every requests (initiate on app generation)
+add handling if page requested is out of range
