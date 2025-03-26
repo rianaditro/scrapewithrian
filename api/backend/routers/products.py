@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Request, Depends, Query
+from fastapi.responses import JSONResponse
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
@@ -22,6 +23,10 @@ async def get_products(
     # Get total products count from app state
     total_products = request.app.state.product_count
     total_pages = (total_products + page_size - 1) // page_size
+
+    # Check if page is out of range
+    if page > total_pages:
+        return JSONResponse(status_code=404, content={"message": "Page not found"})
 
     # Query paginated products
     statement = select(Product).offset(offset).limit(page_size)
