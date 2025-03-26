@@ -62,3 +62,8 @@ install dependencies
 npm install react-router-dom axios tailwindcss
 npx tailwindcss init -p
 
+## add product page
+create a product page that display all data by mapping the data
+create product api handler using axios to comunicate with backend
+update App.jsx to include link to product
+
