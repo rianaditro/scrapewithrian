@@ -50,3 +50,15 @@ add new routers for product pagination
 query database based on offset and limit
 check the total count of database by reading from app state instead of send new query every requests (initiate on app generation)
 add handling if page requested is out of range
+
+# frontend prep
+install node.js 22, update the path and validate
+create the frontend folder
+    npm create vite@latest frontend --template react
+choose react - javascript
+cd folder, npm install, npm run dev
+add allowed host (optional)
+install dependencies
+npm install react-router-dom axios tailwindcss
+npx tailwindcss init -p
+
