@@ -8,5 +8,7 @@ def get_session():
     try:
         with Session(engine) as session:
             yield session
-    except:
-        print("Error while getting session. Please check the database file location.")
+    except Exception as e:
+        print("================================================")
+        print(f"Error in session: {e}")
+        print("================================================")
